@@ -16,15 +16,25 @@ public class SecurityConfig {
     SecurityFilterChain security(HttpSecurity http) throws Exception {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
+                .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(
                                 "/swagger/**",
                                 "/swagger-ui/**",
                                 "/swagger-ui.html",
-                                "/v3/api-docs/**",
-                                "/api/econtracts/v3/api-docs/**"
-                        ).permitAll()
 
+                                "/v3/api-docs",
+                                "/v3/api-docs/**",
+
+                                "/api/econtracts/v3/api-docs",
+                                "/api/econtracts/v3/api-docs/**",
+
+                                "/api/houses/v3/api-docs",
+                                "/api/houses/v3/api-docs/**",
+
+                                "/api/asset/v3/api-docs",
+                                "/api/asset/v3/api-docs/**"
+                        ).permitAll()
                         .requestMatchers("/actuator/**").permitAll()
                         .anyRequest().authenticated()
                 )
