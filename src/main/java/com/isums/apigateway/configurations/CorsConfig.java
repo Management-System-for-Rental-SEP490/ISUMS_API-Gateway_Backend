@@ -13,6 +13,8 @@ public class CorsConfig implements WebMvcConfigurer {
                 .allowedOriginPatterns(
                         "http://localhost:5173",
                         "https://localhost:5173",
+                        "http://localhost:5174",
+                        "https://localhost:5174",
                         "https://*.ngrok-free.dev"
                 )
                 .allowedMethods("GET","POST","PUT","PATCH","DELETE","OPTIONS")
