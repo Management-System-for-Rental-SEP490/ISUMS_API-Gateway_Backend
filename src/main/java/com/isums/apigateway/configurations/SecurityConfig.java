@@ -33,8 +33,11 @@ public class SecurityConfig {
                                 "/api/houses/v3/api-docs",
                                 "/api/houses/v3/api-docs/**",
 
-                                "/api/asset/v3/api-docs",
-                                "/api/asset/v3/api-docs/**",
+                                "/api/assets/v3/api-docs",
+                                "/api/assets/v3/api-docs/**",
+
+                                "/api/users/v3/api-docs",
+                                "/api/users/v3/api-docs/**",
 
                                 "/api/econtracts/processCode",
                                 "/api/econtracts/ready",
