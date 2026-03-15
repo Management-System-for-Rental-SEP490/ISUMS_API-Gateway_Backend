@@ -18,7 +18,9 @@ public class CorsConfig implements WebMvcConfigurer {
                         "https://*.ngrok-free.dev",
                         "https://outsystem.isums.pro",
                         "https://isums.pro",
-                        "https://www.isums.pro"
+                        "https://www.isums.pro",
+                        "https://api-dev.isums.pro",
+                        "http://api-dev.isums.pro"
                 )
                 .allowedMethods("GET","POST","PUT","PATCH","DELETE","OPTIONS")
                 .allowedHeaders("*")

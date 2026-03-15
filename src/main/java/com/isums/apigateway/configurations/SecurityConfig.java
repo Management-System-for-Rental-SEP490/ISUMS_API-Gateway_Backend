@@ -51,10 +51,15 @@ public class SecurityConfig {
                                 "/api/users/v3/api-docs",
                                 "/api/users/v3/api-docs/**",
 
+                                "/api/schedules/v3/api-docs",
+                                "/api/schedules/v3/api-docs/**",
+
                                 "/api/econtracts/processCode",
                                 "/api/econtracts/ready",
                                 "/api/econtracts/outsystem",
                                 "/api/econtracts/sign",
+
+                                "/internal/**",
 
                                 "/error",
                                 "/actuator/**"
