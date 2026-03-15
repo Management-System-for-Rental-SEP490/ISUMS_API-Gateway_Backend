@@ -10,9 +10,17 @@ public class CorsConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins(
+                .allowedOriginPatterns(
                         "http://localhost:5173",
-                        "https://localhost:5173"
+                        "https://localhost:5173",
+                        "http://localhost:5174",
+                        "https://localhost:5174",
+                        "https://*.ngrok-free.dev",
+                        "https://outsystem.isums.pro",
+                        "https://isums.pro",
+                        "https://www.isums.pro",
+                        "https://api-dev.isums.pro",
+                        "http://api-dev.isums.pro"
                 )
                 .allowedMethods("GET","POST","PUT","PATCH","DELETE","OPTIONS")
                 .allowedHeaders("*")
