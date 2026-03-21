@@ -57,6 +57,9 @@ public class SecurityConfig {
                                 "/api/maintains/v3/api-docs",
                                 "/api/maintains/v3/api-docs/**",
 
+                                "/api/issues/v3/api-docs",
+                                "/api/issues/v3/api-docs/**",
+
                                 "/api/econtracts/processCode",
                                 "/api/econtracts/ready",
                                 "/api/econtracts/outsystem",
