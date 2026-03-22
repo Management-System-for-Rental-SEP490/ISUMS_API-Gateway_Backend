@@ -54,8 +54,8 @@ public class SecurityConfig {
                                 "/api/schedules/v3/api-docs",
                                 "/api/schedules/v3/api-docs/**",
 
-                                "/api/maintains/v3/api-docs",
-                                "/api/maintains/v3/api-docs/**",
+                                "/api/maintenances/v3/api-docs",
+                                "/api/maintenances/v3/api-docs/**",
 
                                 "/api/issues/v3/api-docs",
                                 "/api/issues/v3/api-docs/**",
