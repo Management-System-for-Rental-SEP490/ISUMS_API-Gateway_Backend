@@ -60,10 +60,15 @@ public class SecurityConfig {
                                 "/api/issues/v3/api-docs",
                                 "/api/issues/v3/api-docs/**",
 
+                                "/api/payments/v3/api-docs",
+                                "/api/payments/v3/api-docs/**",
+
                                 "/api/econtracts/processCode",
                                 "/api/econtracts/ready",
                                 "/api/econtracts/outsystem",
                                 "/api/econtracts/sign",
+
+                                "/api/payments/ipn",
 
                                 "/internal/**",
 
