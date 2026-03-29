@@ -64,6 +64,8 @@ public class SecurityConfig {
                                 "/api/econtracts/ready",
                                 "/api/econtracts/outsystem",
                                 "/api/econtracts/sign",
+                                "/api/econtracts/*/cccd",
+                                "/api/econtracts/*/cccd-status",
 
                                 "/internal/**",
 
