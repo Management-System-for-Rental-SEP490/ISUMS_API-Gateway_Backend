@@ -78,6 +78,8 @@ public class SecurityConfig {
                                 "/api/econtracts/*/pdf-url",
                                 "/api/econtracts/*/tenant-cancel",
 
+                                "/api/payments/ipn",
+
                                 "/internal/**",
 
                                 "/error",
