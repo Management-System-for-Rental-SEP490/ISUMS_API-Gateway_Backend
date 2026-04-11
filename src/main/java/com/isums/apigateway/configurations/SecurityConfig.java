@@ -67,6 +67,9 @@ public class SecurityConfig {
                                 "/api/payments/vnpay/ipn",
                                 "/api/payments/outsystem/invoices/*",
 
+                                "/api/notifications/v3/api-docs",
+                                "/api/notifications/v3/api-docs/**",
+
                                 "/api/econtracts/processCode",
                                 "/api/econtracts/ready",
                                 "/api/econtracts/outsystem",
