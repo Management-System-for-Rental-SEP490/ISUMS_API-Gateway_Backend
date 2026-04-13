@@ -83,6 +83,8 @@ public class SecurityConfig {
 
                                 "/internal/**",
 
+                                "/api/ai/**",
+
                                 "/error",
                                 "/actuator/**"
                         ).permitAll()
