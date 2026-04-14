@@ -87,6 +87,11 @@ public class SecurityConfig {
 
                                 "/api/ai/**",
 
+                                "/api/assets/internal/iot/node-capabilities",
+                                "/api/assets/internal/**",
+
+                                "/api/ai/**",
+
                                 "/error",
                                 "/actuator/**"
                         ).permitAll()
