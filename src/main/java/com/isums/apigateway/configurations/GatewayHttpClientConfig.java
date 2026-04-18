@@ -25,6 +25,11 @@ public class GatewayHttpClientConfig {
         return builder -> {
             if (builder instanceof HttpComponentsClientHttpRequestFactoryBuilder httpComponentsBuilder) {
                 return httpComponentsBuilder
+                        .withHttpClientCustomizer(client -> client
+                                .setConnectionReuseStrategy((request, response, context) -> false)
+                                .disableConnectionState()
+                                .evictExpiredConnections()
+                                .evictIdleConnections(TimeValue.ofSeconds(1)))
                         .withConnectionConfigCustomizer(config -> config
                                 .setValidateAfterInactivity(TimeValue.ofSeconds(1))
                                 .setTimeToLive(TimeValue.ofSeconds(20)))
