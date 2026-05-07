@@ -3,6 +3,7 @@ package com.isums.apigateway.configurations;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -31,6 +32,7 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(auth -> auth
+                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                         .requestMatchers(
                                 "/swagger/**",
                                 "/swagger-ui/**",
@@ -67,12 +69,26 @@ public class SecurityConfig {
                                 "/api/payments/vnpay/ipn",
                                 "/api/payments/outsystem/invoices/*",
 
+                                "/api/notifications/v3/api-docs",
+                                "/api/notifications/v3/api-docs/**",
+
+                                "/api/notifications/voice/webhook",
+                                "/api/notifications/voice/stringee-webhook",
+                                "/api/notifications/voice/stringee-answer-url",
+                                "/api/notifications/sms/webhook",
+
+                                "/api/notifications/internal/**",
+
+                                "/api/audit-logs/v3/api-docs",
+                                "/api/audit-logs/v3/api-docs/**",
+
                                 "/api/econtracts/processCode",
                                 "/api/econtracts/ready",
                                 "/api/econtracts/outsystem",
                                 "/api/econtracts/sign",
                                 "/api/econtracts/*/cccd",
                                 "/api/econtracts/*/cccd-status",
+                                "/api/econtracts/*/tenant-meta",
                                 "/api/econtracts/ws",
                                 "/api/econtracts/ws/**",
                                 "/api/econtracts/*/pdf-url",
@@ -82,8 +98,16 @@ public class SecurityConfig {
 
                                 "/internal/**",
 
+                                "/api/ai/**",
+
+                                "/api/assets/internal/iot/node-capabilities",
+                                "/api/assets/internal/**",
+
+                                "/api/ai/**",
+
                                 "/error",
-                                "/actuator/**"
+                                "/actuator/health",
+                                "/actuator/prometheus"
                         ).permitAll()
                         .anyRequest().authenticated()
                 )

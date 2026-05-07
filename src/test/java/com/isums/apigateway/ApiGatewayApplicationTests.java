@@ -14,6 +14,7 @@ import java.security.Security;
 import java.util.Properties;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 @SpringBootTest(properties = {
 		"spring.profiles.active=prod",
@@ -45,6 +46,18 @@ class ApiGatewayApplicationTests {
 	}
 
 	@Test
+	void notificationRouteDoesNotUseRetryInDefaultConfig() throws IOException {
+		ClassPathResource resource = new ClassPathResource("application.properties");
+		assumeTrue(resource.exists(), "application.properties is ignored and may be absent in CI");
+		Properties properties = PropertiesLoaderUtils.loadProperties(resource);
+
+		assertThat(properties.getProperty("spring.cloud.gateway.server.webmvc.routes[18].id"))
+				.isEqualTo("notification-service");
+		assertThat(properties.getProperty("spring.cloud.gateway.server.webmvc.routes[18].filters[0]"))
+				.isNull();
+	}
+
+	@Test
 	void prodConfigContainsNotificationRoutes() throws IOException {
 		Properties properties = PropertiesLoaderUtils.loadProperties(
 				new ClassPathResource("application-prod.properties"));
@@ -58,7 +71,7 @@ class ApiGatewayApplicationTests {
 		assertThat(properties.getProperty("spring.cloud.gateway.server.webmvc.routes[16].uri"))
 				.isEqualTo("http://notification-service.isums.local:8085");
 		assertThat(properties.getProperty("spring.cloud.gateway.server.webmvc.routes[16].filters[0]"))
-				.isEqualTo("Retry=2");
+				.isNull();
 	}
 
 }

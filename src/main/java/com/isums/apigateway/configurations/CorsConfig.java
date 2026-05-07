@@ -21,7 +21,8 @@ public class CorsConfig {
         config.addAllowedOriginPattern("https://isums.pro");
         config.addAllowedOriginPattern("https://www.isums.pro");
         config.addAllowedOriginPattern("https://api-dev.isums.pro");
-        config.addAllowedOriginPattern("https://api-dev.isums.pro");
+        config.addAllowedOriginPattern("https://dev.isums.pro");
+        config.addAllowedOriginPattern("https://dev-outsystem.isums.pro");
 
         config.addAllowedMethod("*");
         config.addAllowedHeader("*");

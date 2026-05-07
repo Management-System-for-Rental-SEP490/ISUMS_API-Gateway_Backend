@@ -1,5 +1,9 @@
 package com.isums.apigateway.configurations;
 
+import org.apache.hc.client5.http.config.ConnectionConfig;
+import org.apache.hc.client5.http.impl.io.PoolingHttpClientConnectionManager;
+import org.apache.hc.client5.http.impl.io.PoolingHttpClientConnectionManagerBuilder;
+import org.apache.hc.core5.pool.PoolReusePolicy;
 import org.apache.hc.core5.util.TimeValue;
 import org.apache.hc.core5.util.Timeout;
 import org.springframework.boot.http.client.ClientHttpRequestFactoryBuilder;
@@ -24,18 +28,28 @@ public class GatewayHttpClientConfig {
     ClientHttpRequestFactoryBuilderCustomizer gatewayHttpClientCustomizer() {
         return builder -> {
             if (builder instanceof HttpComponentsClientHttpRequestFactoryBuilder httpComponentsBuilder) {
+                ConnectionConfig connectionConfig = ConnectionConfig.custom()
+                        .setConnectTimeout(Timeout.ofSeconds(2))
+                        .setValidateAfterInactivity(TimeValue.ofSeconds(1))
+                        .setTimeToLive(TimeValue.ofMinutes(10))
+                        .build();
+
+                PoolingHttpClientConnectionManager connectionManager =
+                        PoolingHttpClientConnectionManagerBuilder.create()
+                                .setMaxConnPerRoute(200)
+                                .setMaxConnTotal(500)
+                                .setConnPoolPolicy(PoolReusePolicy.LIFO)
+                                .setDefaultConnectionConfig(connectionConfig)
+                                .build();
+
                 return httpComponentsBuilder
                         .withHttpClientCustomizer(client -> client
-                                .setConnectionReuseStrategy((request, response, context) -> false)
-                                .disableConnectionState()
+                                .setConnectionManager(connectionManager)
                                 .evictExpiredConnections()
-                                .evictIdleConnections(TimeValue.ofSeconds(1)))
-                        .withConnectionConfigCustomizer(config -> config
-                                .setValidateAfterInactivity(TimeValue.ofSeconds(1))
-                                .setTimeToLive(TimeValue.ofSeconds(20)))
+                                .evictIdleConnections(TimeValue.ofMinutes(1)))
                         .withDefaultRequestConfigCustomizer(config -> config
-                                .setConnectionRequestTimeout(Timeout.ofSeconds(2))
-                                .setDefaultKeepAlive(15, TimeUnit.SECONDS));
+                                .setConnectionRequestTimeout(Timeout.ofSeconds(5))
+                                .setDefaultKeepAlive(60, TimeUnit.SECONDS));
             }
             return (ClientHttpRequestFactoryBuilder) builder;
         };
