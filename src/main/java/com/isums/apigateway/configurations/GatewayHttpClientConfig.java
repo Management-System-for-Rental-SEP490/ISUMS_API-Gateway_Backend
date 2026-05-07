@@ -15,17 +15,6 @@ import org.springframework.context.annotation.Configuration;
 import java.security.Security;
 import java.util.concurrent.TimeUnit;
 
-/**
- * Apache HttpClient5 config for Spring Cloud Gateway (WebMVC).
- *
- * Why the tuning:
- * - Gateway MVC is blocking; every SSE stream pins one Apache pool slot for
- *   its entire lifetime. The default pool (25/route, 50 total) exhausts fast
- *   under StrictMode double-mounts, HMR, or a handful of tabs.
- * - PoolingHttpClientConnectionManager is the authoritative place to size
- *   and expire connections; the older `HttpClientBuilder.evictIdleConnections`
- *   path leaks config and can't raise the per-route cap.
- */
 @Configuration
 public class GatewayHttpClientConfig {
 
