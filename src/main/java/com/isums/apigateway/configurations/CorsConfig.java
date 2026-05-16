@@ -16,6 +16,8 @@ public class CorsConfig {
         config.addAllowedOriginPattern("https://localhost:5173");
         config.addAllowedOriginPattern("http://localhost:5174");
         config.addAllowedOriginPattern("https://localhost:5174");
+        config.addAllowedOriginPattern("https://localhost:8082");
+        config.addAllowedOriginPattern("http://localhost:8082");
         config.addAllowedOriginPattern("https://*.ngrok-free.dev");
         config.addAllowedOriginPattern("https://outsystem.isums.pro");
         config.addAllowedOriginPattern("https://isums.pro");
